@@ -1,0 +1,16 @@
+{% block subject %}
+[{{site_name}}] Activate your account
+{% endblock subject %}
+
+{% block text_body %}
+Hello {{name}},
+
+Thank you for using {{site_name}}.
+
+To activate your account, please click the following link:
+{{ protocol }}://{{ domain }}/{{ url|safe }}
+
+You can use all the features of {{site_name}} once you activate your account.
+
+
+{% endblock text_body %}
