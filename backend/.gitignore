@@ -1,4 +1,5 @@
 myenv
+new_myenv
 db.sqlite3
 .vscode
 __pycache__
