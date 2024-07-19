@@ -12,8 +12,6 @@ import { Button } from '../ui/button';
 import { Loader2 } from 'lucide-react';
 import Link from 'next/link';
 
-
-
 const Login = () => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -104,7 +102,7 @@ const Login = () => {
           </Form>
 
           <div className='text-center mt-5'>
-            <Link href="/reset-password" className='text-sm text-blue-500'>
+            <Link href="/forgot-password" className='text-sm text-blue-500'>
                 Forgot password?
             </Link>
           </div>
