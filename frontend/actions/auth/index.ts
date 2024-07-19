@@ -40,3 +40,33 @@ export const TemporarySignup = async ({
     return { success: false }
   }
 }
+
+
+interface CompleteSignupProps {
+  uid: string;
+  token: string;
+}
+
+export const completeSignup = async ({ uid, token }: CompleteSignupProps) => {
+  try {
+    const body = JSON.stringify({
+      uid,
+      token,
+    })
+
+    const apiRes = await fetch(`${process.env.API_URL}/api/auth/users/activation/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body,
+    })
+
+    if(!apiRes.ok) {
+      return { success: false, error: await apiRes.json() }
+    }
+
+    return { success: true }
+  } catch (error) {
+    console.error(error);
+    return { success: false };
+  }
+}
