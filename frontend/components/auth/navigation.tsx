@@ -31,11 +31,10 @@ const Navigation = ({ user }: NavigationProps) => {
               variant='ghost'
               className="font-bold"
             >
-              <Link href="/login">Sign In</Link>
+              <Link href="/login">Login</Link>
             </Button>
             <Button
               asChild
-              variant='ghost'
               className="font-bold"
             >
               <Link href="/signup">Sign Up</Link>
