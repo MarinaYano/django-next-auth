@@ -7,11 +7,8 @@ export const forgotPassword = async ({ email }: ForgotPasswordProps) => {
     email,
   })
 
-  const apiUrl = process.env.API_URL
-
   try {
-    console.log(body)
-    const apiRes = await fetch(`${apiUrl}/api/auth/users/reset-password/`, {
+    const apiRes = await fetch(`http://localhost:8000/api/auth/users/reset_password/`, {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body,
