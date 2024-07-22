@@ -69,8 +69,10 @@ const ResetPassword = ({ uid, token }: ResetPasswordProps) => {
             <br />
             Please login from the button below
             <div className='text-center mt-5'>
-            <Link href="/forgot-password" className='text-sm text-blue-500'>
-                Forgot password?
+            <Link href="/login">
+                <Button variant='outline'>
+                  Login
+                </Button>
             </Link>
           </div>
           </div>
