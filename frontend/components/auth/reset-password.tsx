@@ -43,7 +43,7 @@ const ResetPassword = ({ uid, token }: ResetPasswordProps) => {
 
       if(!res.success) {
         toast({
-          title: 'Failed to send email',
+          title: 'Failed to reset your password',
           description: res.error
         })
         return;
