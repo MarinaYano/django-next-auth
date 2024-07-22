@@ -25,7 +25,7 @@ export const resetPassword = async ({
     const apiUrl = process.env.API_URL
     console.log(apiUrl)
 
-    const apiRes = await fetch(`${apiUrl}/api/auth/users/reset_password_confirm/}`, {
+    const apiRes = await fetch(`${apiUrl}/api/auth/users/reset_password_confirm/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
