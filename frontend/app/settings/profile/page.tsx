@@ -1,6 +1,6 @@
+import Profile from "@/components/settings/profile";
 import { getAuthSession } from "@/lib/nextauth"
 import { redirect } from "next/navigation";
-import Profile from "../profile";
 
 const ProfilePage = async () => {
   const user = await getAuthSession();
