@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { getAuthSession } from "@/lib/nextauth";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { completeSignup } from "@/actions/auth";
+import { completeSignup } from "@/actions/auth/temporary-signup";
 
 interface CompleteSignupPageProps {
   params: {
