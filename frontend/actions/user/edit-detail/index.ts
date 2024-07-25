@@ -5,26 +5,26 @@ import { UserDetailType } from "../get-detail";
 interface UpdateUserProps {
   accessToken: string;
   name: string;
-  introduction: string;
-  avatar: string;
+  introduction: string | undefined;
+  avatar: string | undefined;
 }
+
 export const updateUser = async ({
   accessToken,
   name,
   introduction,
   avatar
 }: UpdateUserProps) => {
-  const body = JSON.stringify({
-    accessToken,
-    name,
-    introduction,
-    avatar,
-  })
-
-  const apiUrl = process.env.API_URL;
-
   try {
-    const res = await fetch(`${apiUrl}/api/auth/users/me`, {
+    const body = JSON.stringify({
+      accessToken,
+      name,
+      introduction,
+      avatar,
+    })
+  
+    const apiUrl = process.env.API_URL;
+    const res = await fetch(`${apiUrl}/api/auth/users/me/`, {
       method: 'PATCH',
       headers: {
         Authorization: `JWT ${accessToken}`,
