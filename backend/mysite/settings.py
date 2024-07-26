@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'djoser',
     'accounts',
+    'app',
     'cloudinary',
     'cloudinary_storage',
     'corsheaders',
