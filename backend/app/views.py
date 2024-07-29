@@ -19,3 +19,11 @@ class PostDetailView(RetrieveAPIView):
 
     def perform_create(self, serializer, **kwargs):
         serializer.save(user=self.request.user)
+
+class PostViewSet(ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    lookup_field = 'uid'
+
+    def perform_Create(self, serializer, **kwargs):
+        serializer.save(user=self.request.user)
