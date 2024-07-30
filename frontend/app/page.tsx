@@ -23,7 +23,7 @@ const Home = async () => {
   return (
     <div>
       {posts.map((post) => (
-        <PostItem key={post.id} post={post} />
+        <PostItem key={post.uid} post={post} />
       ))}
     </div>
   )
