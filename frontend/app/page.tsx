@@ -1,8 +1,32 @@
+import { getPostList } from "@/actions/post"
+import PostItem from "@/components/posts/post-item";
 
-export default function Home() {
+
+const Home = async () => {
+  const { success, posts } = await getPostList();
+
+  if(!success) {
+    return (
+      <div className="text-center text-sm text-gray-500">
+        Failed to fetch posts
+      </div>
+    )
+  }
+
+  if(posts.length === 0) {
+    return (
+      <div className="text-center text-sm text-gray-500">
+        No posts
+      </div>
+    )
+  }
   return (
     <div>
-      Main
-    </div>  
-  );
+      {posts.map((post) => (
+        <PostItem key={post.id} post={post} />
+      ))}
+    </div>
+  )
 }
+
+export default Home
