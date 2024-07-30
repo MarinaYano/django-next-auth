@@ -1,6 +1,7 @@
 import { getServerSession, type NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import type { JWT } from "next-auth/jwt";
+import { UserType } from "./types";
 
 declare module "next-auth" {
   interface Session {
@@ -15,16 +16,6 @@ declare module "next-auth/jwt" {
   }
 }
 
-export interface UserType {
-  accessToken: string;
-  uid: string;
-  name: string;
-  email: string;
-  avatar: string | undefined;
-  introduction: string;
-}
-
-// 
 const fetchAPI = async (url: string, options: RequestInit) => {
   const apiUrl = process.env.API_URL;
 

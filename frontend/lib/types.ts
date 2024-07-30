@@ -1,4 +1,11 @@
-import { UserType } from "./nextauth";
+export interface UserType {
+  accessToken: string;
+  uid: string;
+  name: string;
+  email: string;
+  avatar: string | undefined;
+  introduction: string;
+}
 
 export interface PostType {
   uid: string;
