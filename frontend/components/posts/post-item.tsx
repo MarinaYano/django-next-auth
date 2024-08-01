@@ -29,7 +29,7 @@ const PostItem = ({ post }: PostItemProps) => {
       <div className="flex flex-col h-full p-3">
         <div className="flex-1 mb-3">
           <div className="font-bold hover:underline break-words">
-            <Link href={`user/${post.uid}`}>
+            <Link href={`post/${post.uid}`}>
               {post.title}
             </Link>
           </div>
