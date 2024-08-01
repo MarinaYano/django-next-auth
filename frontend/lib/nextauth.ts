@@ -130,10 +130,10 @@ export const getAuthSession = async () => {
     headers: { "Content-Type": "application/json", Authorization: `JWT ${session.accessToken}` },
   });
 
-  const userDate: UserType = {
+  const userData: UserType = {
     ...user,
     accessToken: session.accessToken,
   }
 
-  return userDate;
+  return userData;
 }
