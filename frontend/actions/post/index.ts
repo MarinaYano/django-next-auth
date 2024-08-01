@@ -56,3 +56,39 @@ export const getPostDetail = async ({ postId }: { postId: string }) => {
   const post: PostType = result.data;
   return { success: true, post }
 }
+
+interface CreatePostProps {
+  accessToken: string;
+  title: string;
+  content: string;
+  image: string | undefined;
+}
+
+export const createPost = async ({
+  accessToken,
+  title,
+  content,
+  image
+}: CreatePostProps) => {
+  const body = JSON.stringify({ title: title, content: content, image: image, accessToken });
+
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `JWT ${accessToken}`,
+    },
+    body,
+  }
+
+  const result = await fetchAPI('/api/posts/', options);
+
+  if(!result.success) {
+    console.error(result.error);
+    return { success: false, post: null }
+  }
+
+  const post: PostType = await result.data;
+
+  return { success: true, post }
+}
