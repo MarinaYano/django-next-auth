@@ -2,15 +2,15 @@
 
 import { updateUser } from "@/actions/user/edit-detail";
 import { editDetailSchema, EditDetailType } from "@/actions/user/edit-detail/schema";
-import { UserType } from "@/lib/nextauth";
+import { UserType } from "@/lib/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import ImageUploading, { ImageListType } from 'react-images-uploading';
+import Image from "next/image";
 import { useToast } from "../ui/use-toast";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
-import Image from "next/image";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Loader2 } from "lucide-react";
