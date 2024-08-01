@@ -39,3 +39,20 @@ export const getPostList = async () => {
   const posts: PostType[] = result.data;
   return { success: true, posts }
 }
+
+export const getPostDetail = async ({ postId }: { postId: string }) => {
+  const options: RequestInit = {
+    method: 'GET',
+    cache: 'no-cache',
+  }
+
+  const result = await fetchAPI(`/api/post-detail/${postId}/`, options);
+
+  if(!result.success) {
+    console.log(result.error);
+    return { success: false, post: null }
+  }
+
+  const post: PostType = result.data;
+  return { success: true, post }
+}
