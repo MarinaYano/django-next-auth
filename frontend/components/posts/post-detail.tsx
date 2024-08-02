@@ -4,7 +4,11 @@ import { PostType, UserType } from "@/lib/types";
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
-import { Pencil } from "lucide-react";
+import { Pencil, Trash2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { deletePost } from "@/actions/post";
+import { useToast } from "../ui/use-toast";
 
 interface PostDetailProps {
   post: PostType;
@@ -12,6 +16,47 @@ interface PostDetailProps {
 }
 
 const PostDetail = ({ post, user }: PostDetailProps) => {
+  const router = useRouter();
+  const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleDeletePost = async () => {
+    setIsLoading(true);
+
+    if(post.user.uid !== user?.uid) {
+      toast({
+        title: 'You cannot delete this post',
+      })
+      return;
+    }
+
+    try {
+      const res = await deletePost({
+        accessToken: user?.accessToken,
+        postId: post.uid,
+      });
+
+      if(!res.success) {
+        toast({
+          title: 'Failed to delete post',
+        })
+      }
+
+      toast({
+        title: 'Successfully deleted post',
+      })
+      router.push('/');
+      router.refresh();
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: 'Failed to delete post',
+      })
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   return (
     <div className="space-y-8">
       <div className="aspect-[16/9] relative">
@@ -32,6 +77,14 @@ const PostDetail = ({ post, user }: PostDetailProps) => {
                 <Pencil className="w-5 h-5" />
               </div>
             </Link>
+            <button
+              type="button"
+              onClick={handleDeletePost}
+              disabled={isLoading}
+              className="hover:bg-gray-100 p-2 rounded-full"
+            >
+              <Trash2 className="w-5 h-5 text-red-500" />
+            </button>
           </div>
         )}
       </div>
