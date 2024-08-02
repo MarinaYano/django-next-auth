@@ -138,3 +138,29 @@ export const updatePost = async ({
 
   return { success: true }
 }
+
+interface DeletePostProps {
+  accessToken: string;
+  postId: string;
+}
+
+export const deletePost = async ({
+  accessToken,
+  postId,
+}: DeletePostProps) => {
+  const options = {
+    method: 'DELETE',
+    headers: {
+      Authorization: `JWT ${accessToken}`,
+    },
+  }
+
+  const res = await fetchAPI(`/api/posts/${postId}/`, options);
+
+  if(!res.success) {
+    console.error(res.error);
+    return { success: false }
+  }
+
+  return { success: true }
+}
