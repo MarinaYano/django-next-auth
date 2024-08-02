@@ -2,15 +2,16 @@
 
 import { PostType, UserType } from "@/lib/types";
 import { format } from "date-fns";
-import { useToast } from "../ui/use-toast";
 import Image from "next/image";
 import Link from "next/link";
+import { Pencil } from "lucide-react";
 
 interface PostDetailProps {
   post: PostType;
+  user: UserType | null;
 }
 
-const PostDetail = ({ post }: PostDetailProps) => {
+const PostDetail = ({ post, user }: PostDetailProps) => {
   return (
     <div className="space-y-8">
       <div className="aspect-[16/9] relative">
@@ -22,7 +23,18 @@ const PostDetail = ({ post }: PostDetailProps) => {
         />
       </div>
 
-      <div className="font-bold text-2xl break-words">{post.title}</div>
+      <div className="flex justify-between items-center">
+        <div className="font-bold text-2xl break-words">{post.title}</div>
+        {post.user.uid === user?.uid && (
+          <div className="flex items-center justify-end space-x-1">
+            <Link href={`${post.uid}/edit`}>
+              <div className="hover:bg-gray-100 p-2 rounded-full">
+                <Pencil className="w-5 h-5" />
+              </div>
+            </Link>
+          </div>
+        )}
+      </div>
 
       <div>
         <div className="flex items-center space-x-2">
@@ -47,8 +59,8 @@ const PostDetail = ({ post }: PostDetailProps) => {
         </div>
       </div>
 
-
       <div className="leading-relaxed break-words whitespace-pre-wrap">{post.content}</div>
+
     </div>
   )
 }
