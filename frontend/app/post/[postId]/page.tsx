@@ -11,7 +11,7 @@ interface PostDetailPageProps {
 const PostDetailPage = async ({ params }: PostDetailPageProps) => {
   const { postId } = params;
 
-  // const user = getAuthSession();
+  const user = await getAuthSession();
 
   const { success, post } = await getPostDetail({ postId });
 
@@ -27,7 +27,7 @@ const PostDetailPage = async ({ params }: PostDetailPageProps) => {
     )
   }
 
-  return <PostDetail post={post} />
+  return <PostDetail post={post} user={user} />
 }
 
 export default PostDetailPage
