@@ -70,7 +70,11 @@ export const createPost = async ({
   content,
   image
 }: CreatePostProps) => {
-  const body = JSON.stringify({ title: title, content: content, image: image, accessToken });
+  const body = JSON.stringify({
+    title: title,
+    content: content,
+    image: image,
+  });
 
   const options = {
     method: 'POST',
@@ -91,4 +95,46 @@ export const createPost = async ({
   const post: PostType = await result.data;
 
   return { success: true, post }
+}
+
+interface UpdatePostProps {
+  accessToken: string;
+  postId: string;
+  title: string;
+  content: string;
+  image: string | undefined;
+}
+
+export const updatePost = async ({
+  title,
+  content,
+  image,
+  accessToken,
+  postId,
+}: UpdatePostProps) => {
+  const body = JSON.stringify({
+    title: title,
+    content: content,
+    image: image,
+  });
+
+  const options = {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `JWT ${accessToken}`,
+    },
+    body,
+  }
+
+  const result = await fetchAPI(`/api/posts/${postId}`, options);
+
+  if(!result.success) {
+    console.error(result.error);
+    return { success: false }
+  }
+
+  const post: PostType = await result.data;
+
+  return { success: true }
 }
