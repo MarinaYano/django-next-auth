@@ -127,7 +127,7 @@ export const updatePost = async ({
     body,
   }
 
-  const result = await fetchAPI(`/api/posts/${postId}`, options);
+  const result = await fetchAPI(`/api/posts/${postId}/`, options);
 
   if(!result.success) {
     console.error(result.error);
